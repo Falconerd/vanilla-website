@@ -8,28 +8,15 @@ fs.rmdirSync('dist', { recursive: true }, (err) => {
     }
 })
 
-return
-
-fs.rmdir('scripts', (err) => {
-    if (err) {
-        console.error(err)
-        return err.code
+fs.mkdirSync('dist')
+try {
+    fs.mkdirSync('scripts')
+} catch (e) {
+    if (e.code !== 'EEXIST') {
+        console.error(e)
+        return e.errno
     }
-})
-
-fs.mkdir('dist', (err) => {
-    if (err) {
-        console.error(err)
-        return err.code
-    }
-})
-
-fs.mkdir('scripts', (err) => {
-    if (err) {
-        console.error(err)
-        return err.code
-    }
-})
+}
 
 // Get each file in pages and parse them into html files.
 const pages = fs.readdirSync('pages')
