@@ -8,20 +8,24 @@ One particularly useful technique for this is Poisson Disc Sampling.
 
 ## <a id="1-defining-a-radius" href="#1-defining-a-radius">1 Defining a radius</a>
 
-{{canvas id="step1"}}
+{{canvas id="radius"}}
 
 The first step is to choose a minimum distance (r), the maximum distance is generally set to 2r.
 New points are generated using the annulus created around an "active point".
 Anywhere within the highlighted area is where a new point may be generated.
 
-```c
-const int RADIUS = 10;
-```
+<pre data-line="1-4"><code class="language-c">int main(void) {
+    int radius = 10;
+    return 0;
+}
+</code></pre>
 
 1. Any new point cannot be generated at a distance less than range _r_ of any other point.
 2. Any new point cannot be generated at a distance greater than _2r_.
 
 {{div class="divider"}}
+
+We also need to create some other variables which are required.
 
 ## <a id="2-generating-new-points" href="#2-generating-new-points">2 Generating new points</a>
 

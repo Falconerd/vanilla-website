@@ -30,11 +30,10 @@ for (let page of pages) {
     console.log(`compiled pages/${name}.md -> dist/${name}.html`)
 }
 
-// Copy js files into dist.
-const scripts = fs.readdirSync('scripts')
+// Copy public files into dist.
+const files = fs.readdirSync('public')
 
-for (let script of scripts) {
-    if (!script.includes('.js')) continue
-    console.log(script)
-    fs.copyFileSync(`scripts/${script}`, `dist/${script}`)
+for (let file of files) {
+    console.log(`copying public/${file} -> dist/${file}`)
+    fs.copyFileSync(`public/${file}`, `dist/${file}`)
 }
